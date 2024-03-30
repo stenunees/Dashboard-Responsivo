@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <!-- Link para o arquivo CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Link para o arquivo JavaScript -->
+    <script src="script.js" defer></script>
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/maps.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/geodata/worldLow.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+</head>
+
+<body>
+    <div class="grid">
+        <header class="header">
+            <i class="fas fa-bars header__menu"></i>
+            <div class="header__search">
+                <input class="header__input" placeholder="Pesquisar..." />
+            </div>
+            <div class="header__avatar">
+                <div class="dropdown">
+                    <ul class="dropdown__list">
+                        <li class="dropdown__list-item">
+                            <span class="dropdown__icon"><i class="far fa-user"></i></span>
+                            <span class="dropdown__title">Perfil</span>
+                        </li>
+                        <li class="dropdown__list-item">
+                            <span class="dropdown__icon"><i class="fas fa-clipboard-list"></i></span>
+                            <span class="dropdown__title">Minha conta</span>
+                        </li>
+                        <li class="dropdown__list-item">
+                            <span class="dropdown__icon"><i class="fas fa-sign-out-alt"></i></span>
+                            <span class="dropdown__title">Sair</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <aside class="sidenav">
+            <div class="sidenav__brand">
+                <i class="fas fa-feather-alt sidenav__brand-icon"></i>
+                <a class="sidenav__brand-link" href="#">Minha<span class="text-light">Agenda</span></a>
+                <i class="fas fa-times sidenav__brand-close"></i>
+            </div>
+            <div class="sidenav__profile">
+                <div class="sidenav__profile-avatar"></div>
+                <div class="sidenav__profile-title text-light">Stephanie Nunes</div>
+            </div>
+            <div class="row row--align-v-center row--align-h-center">
+                <ul class="navList">
+                    <li class="navList__heading">Documentos<i class="far fa-file-alt"></i></li>
+                    <li>
+                        <div class="navList__subheading row row--align-v-center">
+                            <span class="navList__subheading-icon"><i class="fas fa-briefcase-medical"></i></span>
+                            <span class="navList__subheading-title">Seguros</span>
+                        </div>
+                        <ul class="subList subList--hidden">
+                            <li class="subList__item">Saúde</li>
+                            <li class="subList__item">Visão</li>
+                            <li class="subList__item">Dental</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="navList__subheading row row--align-v-center">
+                            <span class="navList__subheading-icon"><i class="fas fa-plane-departure"></i></span>
+                            <span class="navList__subheading-title">Viagens</span>
+                        </div>
+                        <ul class="subList subList--hidden">
+                            <li class="subList__item">Cidade</li>
+                            <li class="subList__item">Exterior</li>
+                            <li class="subList__item">Interior</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="navList__subheading row row--align-v-center">
+                            <span class="navList__subheading-icon"><i class="far fa-angry"></i></span>
+                            <span class="navList__subheading-title">Cobranças</span>
+                        </div>
+                        <ul class="subList subList--hidden">
+                            <li class="subList__item">Atuais</li>
+                            <li class="subList__item">Arquivadas</li>
+                        </ul>
+                    </li>
+
+                    <li class="navList__heading">Mensagens<i class="far fa-envelope"></i></li>
+                    <li>
+                        <div class="navList__subheading row row--align-v-center">
+                            <span class="navList__subheading-icon"><i class="fas fa-envelope"></i></span>
+                            <span class="navList__subheading-title">Caixa de entrada</span>
+                        </div>
+                        <ul class="subList subList--hidden">
+                            <li class="subList__item">Principal</li>
+                            <li class="subList__item">Social</li>
+                            <li class="subList__item">Promoções</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="navList__subheading row row--align-v-center">
+                            <span class="navList__subheading-icon"><i class="fas fa-eye"></i></span>
+                            <span class="navList__subheading-title">Não Lidos</span>
+                        </div>
+                        <ul class="subList subList--hidden">
+                            <li class="subList__item">Principal</li>
+                            <li class="subList__item">Social</li>
+                            <li class="subList__item">Promoções</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="navList__subheading row row--align-v-center">
+                            <span class="navList__subheading-icon"><i class="fas fa-book-open"></i></span>
+                            <span class="navList__subheading-title">Arquivados</span>
+                        </div>
+                        <ul class="subList subList--hidden">
+                            <li class="subList__item">Principal</li>
+                            <li class="subList__item">Social</li>
+                            <li class="subList__item">Promoções</li>
+                        </ul>
+                    </li>
+
+                    <li class="navList__heading">Álbum de fotos <i class="far fa-image"></i></li>
+                    <li>
+                        <div class="navList__subheading row row--align-v-center">
+                            <span class="navList__subheading-icon"><i class="fas fa-mountain"></i></span>
+                            <span class="navList__subheading-title">Férias</span>
+                        </div>
+                        <ul class="subList subList--hidden">
+                            <li class="subList__item">Porto de Galinhas</li>
+                            <li class="subList__item">Rio de Janeiro</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="navList__subheading row row--align-v-center">
+                            <span class="navList__subheading-icon"><i class="fas fa-wine-glass-alt"></i></span>
+                            <span class="navList__subheading-title">Aniversário</span>
+                        </div>
+                        <ul class="subList subList--hidden">
+                            <li class="subList__item">Trilha</li>
+                            <li class="subList__item">Rio Grande do Norte</li>
+                            <li class="subList__item">Aldeia</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="navList__subheading row row--align-v-center">
+                            <span class="navList__subheading-icon"><i class="fas fa-graduation-cap"></i></span>
+                            <span class="navList__subheading-title">Faculdade</span>
+                        </div>
+                        <ul class="subList subList--hidden">
+
+                            <li class="subList__item">Graduação</li>
+                            <li class="subList__item">Estágios</li>
+                        </ul>
+                    </li>
+
+                    <li class="navList__heading">Estatísticas<i class="fas fa-chart-bar"></i></li>
+                    <li>
+                        <div class="navList__subheading row row--align-v-center">
+                            <span class="navList__subheading-icon"><i class="fas fa-credit-card"></i></span>
+                            <span class="navList__subheading-title">Finanças</span>
+                        </div>
+                        <ul class="subList subList--hidden">
+                            <li class="subList__item">Investimentos</li>
+                            <li class="subList__item">Gastos</li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="navList__subheading row row--align-v-center">
+                            <span class="navList__subheading-icon"><i class="fas fa-phone"></i></span>
+                            <span class="navList__subheading-title">Registro de Chamadas</span>
+                        </div>
+                        <ul class="subList subList--hidden">
+                            <li class="subList__item">Mês passado</li>
+                            <li class="subList__item">Semana passada</li>
+                            <li class="subList__item">Ontem</li>
+                            <li class="subList__item">Hoje</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="navList__subheading row row--align-v-center">
+                            <span class="navList__subheading-icon"><i class="fas fa-plane"></i></span>
+                            <span class="navList__subheading-title">Viagens programadas</span>
+                        </div>
+                        <ul class="subList subList--hidden">
+                            <li class="subList__item">Paris</li>
+                            <li class="subList__item">Buenos Aires</li>
+                            <li class="subList__item">Irlanda</li>
+                            <li class="subList__item">Suécia</li>
+                        </ul>
+                    </li>
+
+                    <li class="navList__heading">Eventos<i class="fas fa-calendar-alt"></i></li>
+                    <li>
+                        <div class="navList__subheading row row--align-v-center">
+                            <span class="navList__subheading-icon"><i class="fas fa-wine-glass-alt"></i></span>
+                            <span class="navList__subheading-title">Casamentos</span>
+                        </div>
+                        <ul class="subList subList--hidden">
+                            <li class="subList__item">Passado</li>
+                            <li class="subList__item">Presente</li>
+                            <li class="subList__item">Futuro</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="navList__subheading row row--align-v-center">
+                            <span class="navList__subheading-icon"><i class="fas fa-school"></i></span>
+                            <span class="navList__subheading-title">Datas de eventos</span>
+                        </div>
+                        <ul class="subList subList--hidden">
+                            <li class="subList__item">Passeio cultural</li>
+                            <li class="subList__item">Passeio de barco</li>
+                            <li class="subList__item">Passeio de bondinho</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="navList__subheading row row--align-v-center">
+                            <span class="navList__subheading-icon"><i class="fas fa-users"></i></span>
+                            <span class="navList__subheading-title">Networking</span>
+                        </div>
+                        <ul class="subList subList--hidden">
+                            <li class="subList__item">Área de Tech</li>
+                            <li class="subList__item">Área de Qualidade</li>
+                            <li class="subList__item">Área de Jornalismo</li>
+                            <li class="subList__item">Área da Saúde</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="main">
+            <div class="main-header">
+                <div class="main-header__intro-wrapper">
+                    <div class="main-header__welcome">
+                        <div class="main-header__welcome-title text-light">Bem-vinda, <strong>Stephanie Nunes</strong>
+                        </div>
+                        <div class="main-header__welcome-subtitle text-light">Como você está?</div>
+                    </div>
+                    <div class="quickview">
+                        <div class="quickview__item">
+                            <div class="quickview__item-total">13</div>
+                            <div class="quickview__item-description">
+                                <i class="far fa-calendar-alt"></i>
+                                <span class="text-light">Eventos</span>
+                            </div>
+                        </div>
+                        <div class="quickview__item">
+                            <div class="quickview__item-total">195</div>
+                            <div class="quickview__item-description">
+                                <i class="far fa-comment"></i>
+                                <span class="text-light">Mensagens</span>
+                            </div>
+                        </div>
+                        <div class="quickview__item">
+                            <div class="quickview__item-total">36&deg;</div>
+                            <div class="quickview__item-description">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span class="text-light">Recife</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-overview">
+                <div class="overviewCard">
+                    <div class="overviewCard-icon overviewCard-icon--document">
+                        <i class="far fa-file-alt"></i>
+                    </div>
+                    <div class="overviewCard-description">
+                        <h3 class="overviewCard-title text-light">Novo <strong>Documento</strong></h3>
+                        <p class="overviewCard-subtitle">IA</p>
+                    </div>
+                </div>
+                <div class="overviewCard">
+                    <div class="overviewCard-icon overviewCard-icon--calendar">
+                        <i class="far fa-calendar-check"></i>
+                    </div>
+                    <div class="overviewCard-description">
+                        <h3 class="overviewCard-title text-light">Próximos <strong>Eventos</strong></h3>
+                        <p class="overviewCard-subtitle">Viagem para Paris</p>
+                    </div>
+                </div>
+                <div class="overviewCard">
+                    <div class="overviewCard-icon overviewCard-icon--mail">
+                        <i class="far fa-envelope"></i>
+                    </div>
+                    <div class="overviewCard-description">
+                        <h3 class="overviewCard-title text-light">E-mails <strong>Recentes</strong></h3>
+                        <p class="overviewCard-subtitle">+146</p>
+                    </div>
+                </div>
+                <div class="overviewCard">
+                    <div class="overviewCard-icon overviewCard-icon--photo">
+                        <i class="far fa-file-image"></i>
+                    </div>
+                    <div class="overviewCard-description">
+                        <h3 class="overviewCard-title text-light">Novo <strong>Álbum</strong></h3>
+                        <p class="overviewCard-subtitle">Minhas fotinhos</p>
+                    </div>
+                </div>
+            </div> <!-- /.main__overview -->
+            <div class="main__cards">
+                <div class="card">
+                    <div class="card__header">
+                        <div class="card__header-title text-light">Meus <strong>Eventos</strong>
+                            <a href="#" class="card__header-link text-bold">Ver tudo</a>
+                        </div>
+                        <div class="settings">
+                            <div class="settings__block"><i class="fas fa-edit"></i></div>
+                            <div class="settings__block"><i class="fas fa-cog"></i></div>
+                        </div>
+                    </div>
+                    <div class="card__main">
+                        <div class="card__row">
+                            <div class="card__icon"><i class="fas fa-gift"></i></div>
+                            <div class="card__time">
+                                <div>Hoje</div>
+                            </div>
+                            <div class="card__detail">
+                                <div class="card__source text-bold">Felipe</div>
+                                <div class="card__description">Encontrar com meu amigo às 15h</div>
+                                <div class="card__note">Rua das Flores 1234</div>
+                            </div>
+                        </div>
+                        <div class="card__row">
+                            <div class="card__icon"><i class="fas fa-plane"></i></div>
+                            <div class="card__time">
+                                <div>Quinta-feira</div>
+                            </div>
+                            <div class="card__detail">
+                                <div class="card__source text-bold">Stephanie</div>
+                                <div class="card__description">Viajar para Nova York às 19h</div>
+                                <div class="card__note">Aeroporto Fernando Pessoa, Portão A</div>
+                            </div>
+                        </div>
+                        <div class="card__row">
+                            <div class="card__icon"><i class="fas fa-book"></i></div>
+                            <div class="card__time">
+                                <div>Sexta-Feira</div>
+                            </div>
+                            <div class="card__detail">
+                                <div class="card__source text-bold">Conhecer museus</div>
+                                <div class="card__description">Procurar museus para visitar</div>
+                                <div class="card__note">17h</div>
+                            </div>
+                        </div>
+                        <div class="card__row">
+                            <div class="card__icon"><i class="fas fa-heart"></i></div>
+                            <div class="card__time">
+                                <div>Sábado</div>
+                            </div>
+                            <div class="card__detail">
+                                <div class="card__source text-bold">Ajudar pessoas em situação de rua</div>
+                                <div class="card__description">Projeto social</div>
+                                <div class="card__note">Igreja Paz 13h</div>
+                            </div>
+                        </div>
+                        <div class="card__row">
+                            <div class="card__icon"><i class="fas fa-heart"></i></div>
+                            <div class="card__time">
+                                <div>Domingo</div>
+                            </div>
+                            <div class="card__detail">
+                                <div class="card__source text-bold">Conhecer o restaurante Japonês </div>
+                                <div class="card__description">Sair para conhecer o restaurante</div>
+                                <div class="card__note">20h</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card__header">
+                        <div class="card__header-title text-light">Documentos <strong>Recentes</strong>
+                            <a href="#" class="card__header-link text-bold">Ver todos</a>
+                        </div>
+                        <div class="settings">
+                            <div class="settings__block"><i class="fas fa-edit"></i></div>
+                            <div class="settings__block"><i class="fas fa-cog"></i></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="documents">
+                            <div class="document">
+                                <div class="document__img"></div>
+                                <div class="document__title">Meus projetos</div>
+                                <div class="document__date">30/04/2024</div>
+                            </div>
+                            <div class="document">
+                                <div class="document__img"></div>
+                                <div class="document__title">Inteligência-Artificial</div>
+                                <div class="document__date">29/04/2024</div>
+                            </div>
+                            <div class="document">
+                                <div class="document__img"></div>
+                                <div class="document__title">Melhores Lugares</div>
+                                <div class="document__date">28/04/2024</div>
+                            </div>
+                            <div class="document">
+                                <div class="document__img"></div>
+                                <div class="document__title">Resumo</div>
+                                <div class="document__date">27/04/2024</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card--finance">
+                    <div class="card__header">
+                        <div class="card__header-title text-light">Gastos <strong>Mensais</strong>
+                            <a href="#" class="card__header-link text-bold">Ver todos</a>
+                        </div>
+                        <div class="settings">
+                            <div class="settings__block"><i class="fas fa-edit"></i></div>
+                            <div class="settings__block"><i class="fas fa-cog"></i></div>
+                        </div>
+                    </div>
+                    <div id="chartdiv"></div>
+                </div>
+            </div> <!-- /.main-cards -->
+        </main>
+
+        <footer class="footer">
+            <p><span class="footer__copyright">&copy;</span> Stephanie Nunes, 2024</p>
+            <p>Criado <i class="fas fa-heart footer__icon"></i> por <a href="https://www.linkedin.com/in/matt-holland/"
+                    target="_blank" class="footer__signature">Stephanie Nunes</a></p>
+        </footer>
+    </div>
+</body>
+
+</html>
